@@ -23,12 +23,22 @@ const FoodOrder = () => {
 
         {/* Categories */}
         <section className="categories">
-          {["All", "Burger", "Pizza", "Pasta", "Asian", "Chicken", "Fish"].map((category, index) => (
-            <button key={index} className={index === 0 ? "active" : ""}>{category}</button>
-          ))}
-        </section>
+  {[
+    { name: "All", icon: "🍽" },
+    { name: "Burger", icon: "🍔" },
+    { name: "Pizza", icon: "🍕" },
+    { name: "Pasta", icon: "🍝" },
+    { name: "Asian", icon: "🥢" },
+    { name: "Chicken", icon: "🍗" },
+    { name: "Fish", icon: "🐟" },
+  ].map((category, index) => (
+    <button key={index} className={index === 0 ? "active" : ""}>
+      {category.icon} {category.name}
+    </button>
+  ))}
+</section>
 
-        {/* Food Listings */}
+{/* Food Listings */}
         <section className="food-list">
   {[
     { name: "Pizza Margherita", time: "15 mins", fee: "$3.99", img: "https://img.freepik.com/free-photo/mix-pizza-chicken-tomato-bell-pepper-olives-mushroom-side-view_141793-3167.jpg?uid=R188074966&ga=GA1.1.1689134594.1739360757&semt=ais_hybrid" },
@@ -53,21 +63,44 @@ const FoodOrder = () => {
 
       {/* Right Content (Order Summary) */}
       <aside className="order-summary">
-        <h3>My Order</h3>
-        <ul>
-          <li><span>Sushi Set A</span> <span>$79.99</span></li>
-          <li><span>Sushi Set B</span> <span>$39.50</span></li>
-          <li><span>Original Bread</span> <span>$2.99</span></li>
-          <li><span>Pizza Magherita</span> <span>$59.20</span></li>
-        </ul>
-        <div className="order-pricing">
-          <p><span>Subtotal:</span> <span>$259.30</span></p>
-          <p><span>Delivery Fee:</span> <span>$9.20</span></p>
-          <p><span>Taxes:</span> <span>$39.20</span></p>
-          <h3><span>Total:</span> <span>$395.40</span></h3>
+  <h3>My Order</h3>
+  <ul>
+    {[
+      { name: "Sushi Set A", price: "$79.99", img: "https://img.freepik.com/free-photo/various-selection-sushi-rolls_140725-4433.jpg?uid=R188074966&ga=GA1.1.1689134594.1739360757&semt=ais_hybrid", quantity: 1 },
+      { name: "Sushi Set B", price: "$39.50", img: "https://img.freepik.com/free-photo/various-sushi-rolls-plate_140725-4318.jpg?uid=R188074966&ga=GA1.1.1689134594.1739360757&semt=ais_hybrid", quantity: 1 },
+      { name: "Original Bread", price: "$2.99", img: "https://img.freepik.com/free-photo/slices-dark-white-bread-box-tablecloth_114579-5825.jpg?uid=R188074966&ga=GA1.1.1689134594.1739360757&semt=ais_hybrid", quantity: 3 },
+      { name: "Pizza Margherita", price: "$59.20", img: "https://img.freepik.com/free-photo/top-view-vegetarian-pizza-with-eggplant-bell-pepper-red-onion-tomato-mushroom_141793-2453.jpg?uid=R188074966&ga=GA1.1.1689134594.1739360757&semt=ais_hybrid", quantity: 2 },
+    ].map((item, i) => (
+      <li key={i} className="order-item">
+        <img src={item.img} alt={item.name} />
+        <span>{item.name}</span>
+        <div className="quantity-controls">
+          <button>-</button>
+          <span>{item.quantity}</span>
+          <button>+</button>
         </div>
-        <button className="checkout-button">Order and checkout →</button>
-      </aside>
+        <span>{item.price}</span>
+      </li>
+    ))}
+  </ul>
+
+  {/* Coupons Section */}
+  <div className="coupons">
+    <span>You have 3 coupons</span>
+    <button className="use-coupon">Use now</button>
+  </div>
+
+ {/* Order Pricing */}
+ <div className="order-pricing">
+    <p><span>Subtotal:</span> <span>$259.30</span></p>
+    <p><span>Delivery Fee:</span> <span>$9.20</span></p>
+    <p><span>Taxes:</span> <span>$39.20</span></p>
+    <h3><span>Total:</span> <span>$395.40</span></h3>
+  </div>
+
+{/* Checkout Button */}
+<button className="checkout-button">Order and checkout →</button>
+</aside>                                                                                                                                   
     </div>
   );
 };
